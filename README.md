@@ -5,7 +5,7 @@
 ### ➕ Create a Migration
 
 ```bash
-PYTHONPATH=./src poetry run alembic revision --autogenerate -m "your_migration_name"
+poetry run alembic revision --autogenerate -m "your_migration_name"
 ```
 
 ### 📥 Apply the Migration
