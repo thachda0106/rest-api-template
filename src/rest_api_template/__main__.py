@@ -10,7 +10,6 @@ async def lifespan(app: FastAPI):
     init_db()
     yield
 
-
 app = FastAPI(lifespan=lifespan)
 
 

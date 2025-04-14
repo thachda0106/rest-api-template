@@ -15,6 +15,7 @@ class Task(SQLModel, table=True):
     duration: Optional[int] = None
 
     text: Optional[str] = None
+    details: Optional[str] = None
     progress: Optional[int] = None
 
     parent: Optional[int] = Field(default=None, foreign_key="task.id")

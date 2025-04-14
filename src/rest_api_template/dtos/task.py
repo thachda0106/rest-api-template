@@ -18,6 +18,7 @@ class TaskDTO(BaseModel):
     end: Optional[datetime] = None
     duration: Optional[int] = None
     text: Optional[str] = None
+    details: Optional[str] = None
     progress: Optional[int] = None
     parent: Optional[Union[int, str]] = None
     type: Optional[TaskType] = Field(default=TaskType.task)
