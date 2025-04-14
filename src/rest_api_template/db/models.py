@@ -7,7 +7,7 @@ from sqlalchemy import Column, DateTime
 class Task(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
 
-    start:datetime = Field(sa_column=Column(DateTime(timezone=True)))
+    start: datetime = Field(sa_column=Column(DateTime(timezone=True)))
     end: Optional[datetime] = Field(
         default=None,
         sa_column=Column(DateTime(timezone=True))
@@ -17,7 +17,7 @@ class Task(SQLModel, table=True):
     text: Optional[str] = None
     details: Optional[str] = None
     progress: Optional[int] = None
-
+    index:  Optional[int] = None
     parent: Optional[int] = Field(default=None, foreign_key="task.id")
     # could be "task", "summary", "milestone", or custom
     type: Optional[str] = "task"
