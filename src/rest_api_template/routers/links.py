@@ -1,18 +1,14 @@
+from typing import List
 from fastapi import APIRouter
+from sqlmodel import select
+from ..db.engine import SessionDep
+from ..db.models import Link
+from ..dtos.link import LinkDTO
 
 router = APIRouter()
 
 
 @router.get("/links/")
-async def read_links():
-    return [{"username": "Rick"}, {"username": "Morty"}]
-
-
-@router.get("/links/me")
-async def read_user_me():
-    return {"username": "fakecurrentuser"}
-
-
-@router.get("/links/{username}")
-async def read_user(username: str):
-    return {"username": username}
+async def get_links(session: SessionDep) -> List[Link]:
+    Links = session.exec(select(Link)).all()
+    return [LinkDTO.model_validate(Link) for Link in Links]
