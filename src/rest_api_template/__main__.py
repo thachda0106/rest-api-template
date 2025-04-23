@@ -1,10 +1,13 @@
 from fastapi import FastAPI
 from fastapi.concurrency import asynccontextmanager
 import uvicorn
-from .routers import tasks, links
+
 from .db.engine import init_db
 from fastapi.middleware.cors import CORSMiddleware
 from .configs.env import ORIGINS
+
+from .modules.tasks.router import router as tasks_router
+from .modules.links.router import router as links_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -29,5 +32,5 @@ def start():
     )
 
 # ROUTES
-app.include_router(tasks.router, prefix="/api/v1")
-app.include_router(links.router, prefix="/api/v1")
+app.include_router(tasks_router, prefix="/api/v1")
+app.include_router(links_router, prefix="/api/v1")
